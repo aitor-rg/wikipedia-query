@@ -6,7 +6,6 @@ input=""
 bold=$(tput bold)
 normal=$(tput sgr0)
 
-
 usage()
 {
 	echo "Usage: ${bold}search${normal} SEARCH WORDS"
@@ -16,13 +15,11 @@ usage()
 	echo " -p, --parag=2          number of paragraphs to be shown"
 }
 
-
 contains()
 {
 	seek=$1
 	array=("${@:2:${#@}-1}")
 	c=0
-
 	for arg in "${array[@]}"
         do
 	        if [ "$seek" == "$arg" ]
@@ -32,7 +29,6 @@ contains()
         done
 	echo $c
 }
-
 
 options=("-p" "--parag" "-h" "--help")
 
@@ -75,8 +71,6 @@ echo
 
 content="$(curl -s $page)"
 
-
 echo $content >> /tmp/search.txt
-cd /home/aitor/python3/Tools
-python3 ./postprocess_search_request.py -f /tmp/search.txt -p $p
+python3 ./process_search_request.py -f /tmp/search.txt -p $p
 rm /tmp/search.txt
